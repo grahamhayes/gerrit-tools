@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Bugs Cleanup Dashboard</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.2.0/css/mdb.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.2.0/js/mdb.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#tabHome" aria-controls="tabHome" role="tab" data-toggle="tab">
+                    <img alt="Brand" src="Logo-designate.png" height="20px">
+                </a>
+            </div>
+            <ul class="nav navbar-nav" role="tablist">
+                <li role="presentation" class="active"><a href="#tabHome" aria-controls="tabHome" role="tab" data-toggle="tab">Home</a></li>
+                <li role="presentation"><a href="#tabRecent" aria-controls="tabRecent" role="tab" data-toggle="tab">Recent</a></li>
+                <li role="presentation"><a href="#tabUndecided" aria-controls="tabUndecided" role="tab" data-toggle="tab">Undecided Importance</a></li>
+                <li role="presentation"><a href="#tabInconsistent" aria-controls="tabInconsistent" role="tab" data-toggle="tab">Inconsistant</a></li>
+                <li role="presentation"><a href="#tabIncomplete" aria-controls="tabIncomplete" role="tab" data-toggle="tab">Incomplete</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stale States<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation"><a href="#tabFixCommitted" aria-controls="tabFixCommitted" role="tab" data-toggle="tab">Fix Commmited</a></li>
+                        <li role="presentation"><a href="#tabIncompleteStale" aria-controls="tabIncompleteStale" role="tab" data-toggle="tab">Stale - Incomplete</a></li>
+                        <li role="presentation"><a href="#tabInProgressStale" aria-controls="tabInProgressStale" role="tab" data-toggle="tab">Stale - In Progress</a></li>
+                        <li role="presentation"><a href="#tabWishlist" aria-controls="tabWishlist" role="tab" data-toggle="tab">Wishlist</a></li>
+                        <li role="presentation"><a href="#tabExpired" aria-controls="tabExpired" role="tab" data-toggle="tab">Exipred</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tabHome">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">Bugs Cleanup Dashboard</h1>
+                            </div>
+                            <div class="panel-body">
+                                <p>
+                                    This dashboard intents to give an overview of the bug reports which need attention according to the tasks documented at the
+                                    <a href="https://wiki.openstack.org/wiki/BugTriage">OpenStack wiki</a>
+                                </p>
+                                <p>
+                                    Code and issues at
+                                    <a href="https://github.com/markuszoeller/openstack/blob/master/scripts/launchpad/bugs_dashboard.py">
+                                        github</a>
+                                </p>
+                                <p>
+                                    This gets updated hourly. Last update: 2016-12-15 19:10:13
+                                </p>
+                                <p>
+                                    Author: Markus Zoeller (markus_z)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabRecent">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                All bugs filed recently (in the last 10 days)
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1650080" target="_blank">https://bugs.launchpad.net/designate/+bug/1650080</a>
+                                        </td>
+                                        <td>
+                                            python3.0 has disable LOG.warn
+                                        </td>
+                                        <td>
+                                            0 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabUndecided">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows the <code>confirmed</code> and <code>triaged</code> bug reports without an <code>importance</code>.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1586178" target="_blank">https://bugs.launchpad.net/designate/+bug/1586178</a>
+                                        </td>
+                                        <td>
+                                            A zone import defaults to a ttl of zero (outside schema limits)
+                                        </td>
+                                        <td>
+                                            202 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1614627" target="_blank">https://bugs.launchpad.net/designate/+bug/1614627</a>
+                                        </td>
+                                        <td>
+                                            The &#39;next&#39; link not shown
+                                        </td>
+                                        <td>
+                                            119 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1621219" target="_blank">https://bugs.launchpad.net/designate/+bug/1621219</a>
+                                        </td>
+                                        <td>
+                                            GET /reverse/floatingips/%s returns wrong record
+                                        </td>
+                                        <td>
+                                            98 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabInconsistent">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports which are inconsistent. Bugs with an assignee should be <code>In Progress</code>. Bugs which are <code>In Progress</code> but do not have an assignee should be set back to <code>confirmed</code> (or <code>new</code>).
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1294173" target="_blank">https://bugs.launchpad.net/designate/+bug/1294173</a>
+                                        </td>
+                                        <td>
+                                            Missing documentation for NDS4 backend
+                                        </td>
+                                        <td>
+                                            1003 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1413806" target="_blank">https://bugs.launchpad.net/designate/+bug/1413806</a>
+                                        </td>
+                                        <td>
+                                            designate.plugin.DriverPlugin Hides Errors from Developers
+                                        </td>
+                                        <td>
+                                            692 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1437495" target="_blank">https://bugs.launchpad.net/designate/+bug/1437495</a>
+                                        </td>
+                                        <td>
+                                            sink documenation should explain usage alongside ceilometer
+                                        </td>
+                                        <td>
+                                            628 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1462428" target="_blank">https://bugs.launchpad.net/designate/+bug/1462428</a>
+                                        </td>
+                                        <td>
+                                            project _memeber_ type users cannot read their quotas
+                                        </td>
+                                        <td>
+                                            559 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1493035" target="_blank">https://bugs.launchpad.net/designate/+bug/1493035</a>
+                                        </td>
+                                        <td>
+                                            FloatingIP entry is not removed after VM delete
+                                        </td>
+                                        <td>
+                                            465 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1519872" target="_blank">https://bugs.launchpad.net/designate/+bug/1519872</a>
+                                        </td>
+                                        <td>
+                                            Database performance improvement
+                                        </td>
+                                        <td>
+                                            386 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1541603" target="_blank">https://bugs.launchpad.net/designate/+bug/1541603</a>
+                                        </td>
+                                        <td>
+                                            No multiple errors returned simultaniously if there is a invalid record type error
+                                        </td>
+                                        <td>
+                                            315 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1554130" target="_blank">https://bugs.launchpad.net/designate/+bug/1554130</a>
+                                        </td>
+                                        <td>
+                                            Zone imports are incredibly slow
+                                        </td>
+                                        <td>
+                                            283 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1558096" target="_blank">https://bugs.launchpad.net/designate/+bug/1558096</a>
+                                        </td>
+                                        <td>
+                                            &#34;Resource temporarily unavailable&#34; exception triggering tracebacks in MiniDNS
+                                        </td>
+                                        <td>
+                                            274 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1563904" target="_blank">https://bugs.launchpad.net/designate/+bug/1563904</a>
+                                        </td>
+                                        <td>
+                                            Periodic Recovery attempts to create ERROR&#39;d secondary zones
+                                        </td>
+                                        <td>
+                                            260 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1587609" target="_blank">https://bugs.launchpad.net/designate/+bug/1587609</a>
+                                        </td>
+                                        <td>
+                                            Deprecations for config options
+                                        </td>
+                                        <td>
+                                            198 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1603808" target="_blank">https://bugs.launchpad.net/designate/+bug/1603808</a>
+                                        </td>
+                                        <td>
+                                            Designate setup missing several steps
+                                        </td>
+                                        <td>
+                                            150 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1614627" target="_blank">https://bugs.launchpad.net/designate/+bug/1614627</a>
+                                        </td>
+                                        <td>
+                                            The &#39;next&#39; link not shown
+                                        </td>
+                                        <td>
+                                            119 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1621219" target="_blank">https://bugs.launchpad.net/designate/+bug/1621219</a>
+                                        </td>
+                                        <td>
+                                            GET /reverse/floatingips/%s returns wrong record
+                                        </td>
+                                        <td>
+                                            98 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1627941" target="_blank">https://bugs.launchpad.net/designate/+bug/1627941</a>
+                                        </td>
+                                        <td>
+                                            Zone transfer accept is forbidden for the non admin users 
+                                        </td>
+                                        <td>
+                                            79 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1552251" target="_blank">https://bugs.launchpad.net/designate/+bug/1552251</a>
+                                        </td>
+                                        <td>
+                                            Calls git log when building docs
+                                        </td>
+                                        <td>
+                                            70 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1639748" target="_blank">https://bugs.launchpad.net/designate/+bug/1639748</a>
+                                        </td>
+                                        <td>
+                                            zone pool attribute + fallback filter not working without attributes
+                                        </td>
+                                        <td>
+                                            38 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabFixCommitted">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports in the state <code>Fix Committed</code>. Since the Mitaka cycle we use the direct release model, which means those bug reports should have <code>Fix Released</code>.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1474012" target="_blank">https://bugs.launchpad.net/designate/+bug/1474012</a>
+                                        </td>
+                                        <td>
+                                            Incorrect length limit for TXT record data
+                                        </td>
+                                        <td>
+                                            377 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1465086" target="_blank">https://bugs.launchpad.net/designate/+bug/1465086</a>
+                                        </td>
+                                        <td>
+                                            tox doesn&#39;t work under proxy
+                                        </td>
+                                        <td>
+                                            377 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1220354" target="_blank">https://bugs.launchpad.net/designate/+bug/1220354</a>
+                                        </td>
+                                        <td>
+                                            designate domain-create does not throw any error when Zero and Negative TTL Values are specified 
+                                        </td>
+                                        <td>
+                                            358 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1411442" target="_blank">https://bugs.launchpad.net/designate/+bug/1411442</a>
+                                        </td>
+                                        <td>
+                                            Central Unit Tests need improvement
+                                        </td>
+                                        <td>
+                                            321 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1555624" target="_blank">https://bugs.launchpad.net/designate/+bug/1555624</a>
+                                        </td>
+                                        <td>
+                                            Getting ImportError: No module named functionaltests.common
+                                        </td>
+                                        <td>
+                                            247 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabIncomplete">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                Incomplete bugs with a response. The response should be checked.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1623576" target="_blank">https://bugs.launchpad.net/designate/+bug/1623576</a>
+                                        </td>
+                                        <td>
+                                            test_zone_create_propagates_to_nameservers times out before zone is fully propagated
+                                        </td>
+                                        <td>
+                                            57 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabIncompleteStale">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports which have the status incomplete for more than 30 days and are therefore potentially stale.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1621388" target="_blank">https://bugs.launchpad.net/designate/+bug/1621388</a>
+                                        </td>
+                                        <td>
+                                            In devstack, installing DNSaaS fails as there is no /etc/powerdns/pdns.d directory created
+                                        </td>
+                                        <td>
+                                            92 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1623576" target="_blank">https://bugs.launchpad.net/designate/+bug/1623576</a>
+                                        </td>
+                                        <td>
+                                            test_zone_create_propagates_to_nameservers times out before zone is fully propagated
+                                        </td>
+                                        <td>
+                                            57 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabInProgressStale">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports which have the status
+                                <code>in progress</code> for more than 14 days but do not have open reviews and are therefore potentially stale.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1501396" target="_blank">https://bugs.launchpad.net/designate/+bug/1501396</a>
+                                        </td>
+                                        <td>
+                                            Not able to assign octects to the format in designate.conf for IPv6 ips
+                                        </td>
+                                        <td>
+                                            428 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1534782" target="_blank">https://bugs.launchpad.net/designate/+bug/1534782</a>
+                                        </td>
+                                        <td>
+                                            eventlet breaks hacking &gt;= 0.10.2
+                                        </td>
+                                        <td>
+                                            335 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1289344" target="_blank">https://bugs.launchpad.net/designate/+bug/1289344</a>
+                                        </td>
+                                        <td>
+                                            *_at fields time precision is ignored by database
+                                        </td>
+                                        <td>
+                                            239 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1412977" target="_blank">https://bugs.launchpad.net/designate/+bug/1412977</a>
+                                        </td>
+                                        <td>
+                                            RPC code overrides a private method of Oslo&#39;s Dispatcher class
+                                        </td>
+                                        <td>
+                                            219 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1501394" target="_blank">https://bugs.launchpad.net/designate/+bug/1501394</a>
+                                        </td>
+                                        <td>
+                                            Detaching a port from an Instance does not remove associated FQDN from designate
+                                        </td>
+                                        <td>
+                                            155 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabWishlist">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows old wishlist bug reports
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1271575" target="_blank">https://bugs.launchpad.net/designate/+bug/1271575</a>
+                                        </td>
+                                        <td>
+                                            Audit policy checks &amp; add / remove where needed
+                                        </td>
+                                        <td>
+                                            1058 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabExpired">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports which got reported 18 months ago and are therefore potentially expired. To remove a still valid bug report from this list you can leave a comment like
+                                <code>CONFIRMED FOR: RELEASE_NAME</code> (all caps) in that bug report. For example for Newton this would be
+                                <code>CONFIRMED FOR: NEWTON</code>. This works also for the last stable releases.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1271575" target="_blank">https://bugs.launchpad.net/designate/+bug/1271575</a>
+                                        </td>
+                                        <td>
+                                            Audit policy checks &amp; add / remove where needed
+                                        </td>
+                                        <td>
+                                            1058 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1294173" target="_blank">https://bugs.launchpad.net/designate/+bug/1294173</a>
+                                        </td>
+                                        <td>
+                                            Missing documentation for NDS4 backend
+                                        </td>
+                                        <td>
+                                            1003 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1413806" target="_blank">https://bugs.launchpad.net/designate/+bug/1413806</a>
+                                        </td>
+                                        <td>
+                                            designate.plugin.DriverPlugin Hides Errors from Developers
+                                        </td>
+                                        <td>
+                                            692 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1436210" target="_blank">https://bugs.launchpad.net/designate/+bug/1436210</a>
+                                        </td>
+                                        <td>
+                                            Multiple serial update notifications are not buffered 
+                                        </td>
+                                        <td>
+                                            631 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1437495" target="_blank">https://bugs.launchpad.net/designate/+bug/1437495</a>
+                                        </td>
+                                        <td>
+                                            sink documenation should explain usage alongside ceilometer
+                                        </td>
+                                        <td>
+                                            628 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1442141" target="_blank">https://bugs.launchpad.net/designate/+bug/1442141</a>
+                                        </td>
+                                        <td>
+                                            designate-api Throws Error on stop()
+                                        </td>
+                                        <td>
+                                            616 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1442699" target="_blank">https://bugs.launchpad.net/designate/+bug/1442699</a>
+                                        </td>
+                                        <td>
+                                            Add admin endpoint to the list of versions
+                                        </td>
+                                        <td>
+                                            615 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>

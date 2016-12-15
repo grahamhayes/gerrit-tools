@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Bugs Cleanup Dashboard</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.2.0/css/mdb.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.2.0/js/mdb.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#tabHome" aria-controls="tabHome" role="tab" data-toggle="tab">
+                    <img alt="Brand" src="Logo-designate.png" height="20px">
+                </a>
+            </div>
+            <ul class="nav navbar-nav" role="tablist">
+                <li role="presentation" class="active"><a href="#tabHome" aria-controls="tabHome" role="tab" data-toggle="tab">Home</a></li>
+                <li role="presentation"><a href="#tabRecent" aria-controls="tabRecent" role="tab" data-toggle="tab">Recent</a></li>
+                <li role="presentation"><a href="#tabUndecided" aria-controls="tabUndecided" role="tab" data-toggle="tab">Undecided Importance</a></li>
+                <li role="presentation"><a href="#tabInconsistent" aria-controls="tabInconsistent" role="tab" data-toggle="tab">Inconsistant</a></li>
+                <li role="presentation"><a href="#tabIncomplete" aria-controls="tabIncomplete" role="tab" data-toggle="tab">Incomplete</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stale States<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation"><a href="#tabFixCommitted" aria-controls="tabFixCommitted" role="tab" data-toggle="tab">Fix Commmited</a></li>
+                        <li role="presentation"><a href="#tabIncompleteStale" aria-controls="tabIncompleteStale" role="tab" data-toggle="tab">Stale - Incomplete</a></li>
+                        <li role="presentation"><a href="#tabInProgressStale" aria-controls="tabInProgressStale" role="tab" data-toggle="tab">Stale - In Progress</a></li>
+                        <li role="presentation"><a href="#tabWishlist" aria-controls="tabWishlist" role="tab" data-toggle="tab">Wishlist</a></li>
+                        <li role="presentation"><a href="#tabExpired" aria-controls="tabExpired" role="tab" data-toggle="tab">Exipred</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Dashboards<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation"><a href="designate-bugs-dashboard.html">Designate Bugs Dashboard</a></li>
+                        <li role="presentation"><a href="designate-dashboard-bugs-dashboard.html">Designate Dashboard (Horizon Plugin) Bugs Dashboard</a></li>
+                        <li role="presentation"><a href="python-designateclient-bugs-dashboard.html">Designate Client Bugs Dashboard</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li role="presentation"><a href="http://graham.hayes.ie/designate/dashboard">Designate Combined Gerrit Code Review Dashboard</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tabHome">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">Bugs Cleanup Dashboard</h1>
+                            </div>
+                            <div class="panel-body">
+                                <p>
+                                    This dashboard intents to give an overview of the bug reports which need attention
+                                </p>
+                                <p>
+                                    Code and issues at
+                                    <a href="https://github.com/grahamhayes/gerrit-tools/blob/master/lp/lp-dash.py">
+                                        github</a>
+                                    Forked from <a href="https://github.com/markuszoeller/openstack/blob/master/scripts/launchpad/bugs_dashboard.py">Markus Zoeller (markus_z)</a>
+                                </p>
+                                <p>
+                                    This gets updated hourly. Last update: 2016-12-15 19:31:30
+                                </p>
+                                <p>
+                                    Original Author: Markus Zoeller (markus_z)
+                                    Author: Graham Hayes (mugsie)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabRecent">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                All bugs filed recently (in the last 10 days)
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabUndecided">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows the <code>confirmed</code> and <code>triaged</code> bug reports without an <code>importance</code>.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabInconsistent">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports which are inconsistent. Bugs with an assignee should be <code>In Progress</code>. Bugs which are <code>In Progress</code> but do not have an assignee should be set back to <code>confirmed</code> (or <code>new</code>).
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabFixCommitted">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports in the state <code>Fix Committed</code>. Since the Mitaka cycle we use the direct release model, which means those bug reports should have <code>Fix Released</code>.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabIncomplete">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                Incomplete bugs with a response. The response should be checked.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabIncompleteStale">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports which have the status incomplete for more than 30 days and are therefore potentially stale.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabInProgressStale">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports which have the status
+                                <code>in progress</code> for more than 14 days but do not have open reviews and are therefore potentially stale.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabWishlist">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows old wishlist bug reports
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabExpired">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug reports which got reported 18 months ago and are therefore potentially expired. To remove a still valid bug report from this list you can leave a comment like
+                                <code>CONFIRMED FOR: RELEASE_NAME</code> (all caps) in that bug report. For example for Newton this would be
+                                <code>CONFIRMED FOR: NEWTON</code>. This works also for the last stable releases.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
