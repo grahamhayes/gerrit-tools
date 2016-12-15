@@ -4,12 +4,13 @@ from pygerrit.rest import GerritRestAPI
 import datetime
 import humanize
 from prettytable import PrettyTable
-
+import os
 import warnings
 warnings.filterwarnings("ignore")
+from requests.auth import HTTPBasicAuth, HTTPDigestAuth
 
 GERRIT_TIMESTAMP_FMT = '%Y-%m-%d %H:%M:%S'
-QUERY = 'status:open+label:Code-Review<=-1+'
+QUERY = 'status:open+(label:Code-Review<=-1+OR+label:Verified<=-1)+'
 DAYS = 45
 PROJECTS_LIST = [
     'designate',
@@ -19,6 +20,11 @@ PROJECTS_LIST = [
 ]
 
 USERS = {}
+
+MSG = "As this review has not been updated for more than %s days, with a "\
+      "negative vote, we are abandoning it for now. Feel free to reactivate "\
+      "the review by pressing the restore button and leaving a 'recheck' "\
+      "comment to get fresh test results." % DAYS
 
 
 def parse_gerrit_time(value):
@@ -66,7 +72,7 @@ def format_dict(change):
     ]
 
 
-def print_project(project):
+def process_project(project):
 
     changes = rest.get("/changes/?q=%sproject:openstack/%s" % (QUERY, project))
 
@@ -90,13 +96,20 @@ def print_project(project):
 
     for change in changes:
         if parse_gerrit_time(change['updated']) < cut_off_date:
+
+            # rest.post("/changes/%s/abandon" % change['id'],
+            #           data=MSG)
+
             ct.add_row(format_dict(change))
 
-    print('Changes Not Updated in %s days - openstack/%s' % (DAYS, project))
+    print('Changes Abandoned in openstack/%s' % project)
 
     print(ct)
+user = os.environ['GERRIT_USER']
+pwd = os.environ['GERRIT_PWD']
+auth = HTTPDigestAuth(user, pwd)
 
-rest = GerritRestAPI(url='https://review.openstack.org')
+rest = GerritRestAPI(url='https://review.openstack.org', auth=auth)
 
 for project in PROJECTS_LIST:
-    print_project(project)
+    process_project(project)
