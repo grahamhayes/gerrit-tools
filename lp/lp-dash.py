@@ -21,9 +21,17 @@ parser.add_argument('-p',
                     dest='project_name',
                     help='The LP project name.')
 
+parser.add_argument('-o',
+                    '--output',
+                    required=False,
+                    default=".",
+                    dest='output',
+                    help='Folder to output the html to')
+
 args = parser.parse_args()
 
 PROJECT_NAME = args.project_name
+OUTPUT_FOLDER = args.output
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 DAYS_SINCE_INCOMPLETE = 30
@@ -328,7 +336,7 @@ def create_html_dashboard():
         inconsistent_reports=sorted(get_inconsistent_reports(), reverse=True),
         expired_reports=sorted(get_expired_reports(), reverse=True)
     )
-    with open("%s-bugs-dashboard.html" % PROJECT_NAME, "wb") as fh:
+    with open("%s/%s-bugs-dashboard.html" % (OUTPUT_FOLDER, PROJECT_NAME), "wb") as fh:
         fh.write(rendered_html)
     LOG.info("created html dashboard")
 
