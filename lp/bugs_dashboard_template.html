@@ -36,8 +36,16 @@
                         <li role="presentation"><a href="#tabExpired" aria-controls="tabExpired" role="tab" data-toggle="tab">Exipred</a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul><!-- tabLowHangingFruit -->
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tagged Issues<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation"><a href="#tabLowHangingFruit" aria-controls="tabLowHangingFruit" role="tab" data-toggle="tab">Low Hanging Fruit</a></li>
+                        <li role="presentation"><a href="#tabBreaksGate" aria-controls="tabBreaksGate" role="tab" data-toggle="tab">Breaks Gate</a></li>
+                        <li role="presentation"><a href="#tabDocs" aria-controls="tabDocs" role="tab" data-toggle="tab">Docs</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Dashboards<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -329,6 +337,93 @@
                                 </thead>
                                 <tbody>
                                     {% for b in expired_reports %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ b.link }}" target="_blank">{{ b.link }}</a>
+                                        </td>
+                                        <td>
+                                            {{ b.title }}
+                                        </td>
+                                        <td>
+                                            {{ b.age }} days old
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabLowHangingFruit">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug unassigned reports which are tagged as <code>low-hanging-fruit</code> which we use to highlight bugs that may be a good start for new contributors
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                    {% for b in low_hanging_fruit_reports %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ b.link }}" target="_blank">{{ b.link }}</a>
+                                        </td>
+                                        <td>
+                                            {{ b.title }}
+                                        </td>
+                                        <td>
+                                            {{ b.age }} days old
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabBreaksGate">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                This is a list of bugs causing the gate to fail, and not let other patches in. If there is bugs here, they are the top priority
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                    {% for b in breaks_gate_reports %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ b.link }}" target="_blank">{{ b.link }}</a>
+                                        </td>
+                                        <td>
+                                            {{ b.title }}
+                                        </td>
+                                        <td>
+                                            {{ b.age }} days old
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabDocs">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bugs for documentation.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                    {% for b in docs_reports %}
                                     <tr>
                                         <td>
                                             <a href="{{ b.link }}" target="_blank">{{ b.link }}</a>

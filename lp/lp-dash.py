@@ -202,6 +202,62 @@ def get_incomplete_response():
     return incomplete_response
 
 
+def get_low_hanging_fruit_reports():
+    LOG.info("getting low hanging fruit reports...")
+    low_hanging_fruit = []
+    today = datetime.datetime.today()
+    lp_project = get_project_client()
+
+    bug_tasks = lp_project.searchTasks(tags=["low-hanging-fruit"],
+                                       omit_duplicates=True)
+    for bug_task in bug_tasks:
+        if not bug_task.assignee:
+            # remove the timezone info as it disturbs the calc of the diff
+            diff = today - bug_task.date_created.replace(tzinfo=None)
+            low_hanging_fruit.append(BugReport(link=bug_task.web_link,
+                                     title=bug_task.bug.title,
+                                     age=diff.days))
+    LOG.info("got low hanging fruit reports...")
+    return low_hanging_fruit
+
+
+def get_breaks_gate_reports():
+    LOG.info("getting breaks gate reports...")
+    breaks_gate = []
+    today = datetime.datetime.today()
+    lp_project = get_project_client()
+
+    bug_tasks = lp_project.searchTasks(tags=["breaks-gate"],
+                                       omit_duplicates=True)
+    for bug_task in bug_tasks:
+        # remove the timezone info as it disturbs the calc of the diff
+        diff = today - bug_task.date_created.replace(tzinfo=None)
+        breaks_gate.append(BugReport(link=bug_task.web_link,
+                           title=bug_task.bug.title,
+                           age=diff.days))
+        LOG.info(bug_task.web_link)
+        LOG.info(bug_task.title)
+    LOG.info("got breaks gate reports...")
+    return breaks_gate
+
+
+def get_docs_reports():
+    LOG.info("getting docs reports...")
+    docs = []
+    today = datetime.datetime.today()
+    lp_project = get_project_client()
+
+    bug_tasks = lp_project.searchTasks(tags=["low-hanging-fruit"],
+                                       omit_duplicates=True)
+    for bug_task in bug_tasks:
+        diff = today - bug_task.date_created.replace(tzinfo=None)
+        docs.append(BugReport(link=bug_task.web_link,
+                    title=bug_task.bug.title,
+                    age=diff.days))
+    LOG.info("got docs reports...")
+    return docs
+
+
 def get_inconsistent_reports():
     LOG.info("getting inconsistent reports...")
     inconsistent = []
@@ -212,7 +268,7 @@ def get_inconsistent_reports():
                                        omit_duplicates=True)
     for bug_task in bug_tasks:
         if not bug_task.assignee:
-            # remove the timezone info as it disturbs the calculation of the diff
+            # remove the timezone info as it disturbs the calc of the diff
             diff = today - bug_task.date_created.replace(tzinfo=None)
             inconsistent.append(BugReport(link=bug_task.web_link,
                                           title=bug_task.bug.title,
@@ -222,7 +278,7 @@ def get_inconsistent_reports():
                                        omit_duplicates=True)
     for bug_task in bug_tasks:
         if bug_task.assignee:
-            # remove the timezone info as it disturbs the calculation of the diff
+            # remove the timezone info as it disturbs the calc of the diff
             diff = today - bug_task.date_created.replace(tzinfo=None)
             inconsistent.append(BugReport(link=bug_task.web_link,
                                           title=bug_task.bug.title,
@@ -334,6 +390,9 @@ def create_html_dashboard():
         patched_reports=sorted(get_patched_reports(), reverse=True),
         old_wishlist=sorted(get_old_wishlist(), reverse=True),
         inconsistent_reports=sorted(get_inconsistent_reports(), reverse=True),
+        low_hanging_fruit_reports=sorted(get_low_hanging_fruit_reports(), reverse=True),
+        breaks_gate_reports=sorted(get_breaks_gate_reports(), reverse=True),
+        docs_reports=sorted(get_docs_reports(), reverse=True),
         expired_reports=sorted(get_expired_reports(), reverse=True)
     )
     with open("%s/%s-bugs-dashboard.html" % (OUTPUT_FOLDER, PROJECT_NAME), "wb") as fh:

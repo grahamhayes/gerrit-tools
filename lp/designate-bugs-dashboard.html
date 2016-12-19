@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Bugs Cleanup Dashboard</title>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
@@ -34,8 +36,16 @@
                         <li role="presentation"><a href="#tabExpired" aria-controls="tabExpired" role="tab" data-toggle="tab">Exipred</a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul><!-- tabLowHangingFruit -->
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tagged Issues<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation"><a href="#tabLowHangingFruit" aria-controls="tabLowHangingFruit" role="tab" data-toggle="tab">Low Hanging Fruit</a></li>
+                        <li role="presentation"><a href="#tabBreaksGate" aria-controls="tabBreaksGate" role="tab" data-toggle="tab">Breaks Gate</a></li>
+                        <li role="presentation"><a href="#tabDocs" aria-controls="tabDocs" role="tab" data-toggle="tab">Docs</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Dashboards<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -70,7 +80,7 @@
                                     Forked from <a href="https://github.com/markuszoeller/openstack/blob/master/scripts/launchpad/bugs_dashboard.py">Markus Zoeller (markus_z)</a>
                                 </p>
                                 <p>
-                                    This gets updated hourly. Last update: 2016-12-16 17:52:56
+                                    This gets updated hourly. Last update: 2016-12-16 20:08:53
                                 </p>
                                 <p>
                                     Original Author: Markus Zoeller (markus_z)
@@ -148,7 +158,7 @@
                                             GET /reverse/floatingips/%s returns wrong record
                                         </td>
                                         <td>
-                                            99 days old
+                                            100 days old
                                         </td>
                                     </tr>
                                                                     </tbody>
@@ -285,7 +295,7 @@
                                             Deprecations for config options
                                         </td>
                                         <td>
-                                            198 days old
+                                            199 days old
                                         </td>
                                     </tr>
                                                                         <tr>
@@ -296,7 +306,7 @@
                                             Designate setup missing several steps
                                         </td>
                                         <td>
-                                            151 days old
+                                            152 days old
                                         </td>
                                     </tr>
                                                                         <tr>
@@ -318,7 +328,7 @@
                                             GET /reverse/floatingips/%s returns wrong record
                                         </td>
                                         <td>
-                                            99 days old
+                                            100 days old
                                         </td>
                                     </tr>
                                                                         <tr>
@@ -370,61 +380,6 @@
                                     <td>Age</td>
                                 </thead>
                                 <tbody>
-                                                                        <tr>
-                                        <td>
-                                            <a href="https://bugs.launchpad.net/designate/+bug/1474012" target="_blank">https://bugs.launchpad.net/designate/+bug/1474012</a>
-                                        </td>
-                                        <td>
-                                            Incorrect length limit for TXT record data
-                                        </td>
-                                        <td>
-                                            378 days old
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>
-                                            <a href="https://bugs.launchpad.net/designate/+bug/1465086" target="_blank">https://bugs.launchpad.net/designate/+bug/1465086</a>
-                                        </td>
-                                        <td>
-                                            tox doesn&#39;t work under proxy
-                                        </td>
-                                        <td>
-                                            378 days old
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>
-                                            <a href="https://bugs.launchpad.net/designate/+bug/1220354" target="_blank">https://bugs.launchpad.net/designate/+bug/1220354</a>
-                                        </td>
-                                        <td>
-                                            designate domain-create does not throw any error when Zero and Negative TTL Values are specified 
-                                        </td>
-                                        <td>
-                                            359 days old
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>
-                                            <a href="https://bugs.launchpad.net/designate/+bug/1411442" target="_blank">https://bugs.launchpad.net/designate/+bug/1411442</a>
-                                        </td>
-                                        <td>
-                                            Central Unit Tests need improvement
-                                        </td>
-                                        <td>
-                                            322 days old
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>
-                                            <a href="https://bugs.launchpad.net/designate/+bug/1555624" target="_blank">https://bugs.launchpad.net/designate/+bug/1555624</a>
-                                        </td>
-                                        <td>
-                                            Getting ImportError: No module named functionaltests.common
-                                        </td>
-                                        <td>
-                                            248 days old
-                                        </td>
-                                    </tr>
                                                                     </tbody>
                             </table>
                         </div>
@@ -441,17 +396,6 @@
                                     <td>Age</td>
                                 </thead>
                                 <tbody>
-                                                                        <tr>
-                                        <td>
-                                            <a href="https://bugs.launchpad.net/designate/+bug/1623576" target="_blank">https://bugs.launchpad.net/designate/+bug/1623576</a>
-                                        </td>
-                                        <td>
-                                            test_zone_create_propagates_to_nameservers times out before zone is fully propagated
-                                        </td>
-                                        <td>
-                                            57 days old
-                                        </td>
-                                    </tr>
                                                                     </tbody>
                             </table>
                         </div>
@@ -477,17 +421,6 @@
                                         </td>
                                         <td>
                                             93 days old
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>
-                                            <a href="https://bugs.launchpad.net/designate/+bug/1623576" target="_blank">https://bugs.launchpad.net/designate/+bug/1623576</a>
-                                        </td>
-                                        <td>
-                                            test_zone_create_propagates_to_nameservers times out before zone is fully propagated
-                                        </td>
-                                        <td>
-                                            57 days old
                                         </td>
                                     </tr>
                                                                     </tbody>
@@ -526,7 +459,7 @@
                                             eventlet breaks hacking &gt;= 0.10.2
                                         </td>
                                         <td>
-                                            335 days old
+                                            336 days old
                                         </td>
                                     </tr>
                                                                         <tr>
@@ -682,6 +615,164 @@
                                         </td>
                                         <td>
                                             616 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabLowHangingFruit">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bug unassigned reports which are tagged as <code>low-hanging-fruit</code> which we use to highlight bugs that may be a good start for new contributors
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1462428" target="_blank">https://bugs.launchpad.net/designate/+bug/1462428</a>
+                                        </td>
+                                        <td>
+                                            project _memeber_ type users cannot read their quotas
+                                        </td>
+                                        <td>
+                                            560 days old
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabBreaksGate">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                This is a list of bugs causing the gate to fail, and not let other patches in. If there is bugs here, they are the top priority
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabDocs">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                The list below shows bugs for documentation.
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <td>Bug</td>
+                                    <td>Title</td>
+                                    <td>Age</td>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1281128" target="_blank">https://bugs.launchpad.net/designate/+bug/1281128</a>
+                                        </td>
+                                        <td>
+                                            Storage&#39;s find_tenants method signature differs from the other find_* methods
+                                        </td>
+                                        <td>
+                                            1033 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1289344" target="_blank">https://bugs.launchpad.net/designate/+bug/1289344</a>
+                                        </td>
+                                        <td>
+                                            *_at fields time precision is ignored by database
+                                        </td>
+                                        <td>
+                                            1015 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1294173" target="_blank">https://bugs.launchpad.net/designate/+bug/1294173</a>
+                                        </td>
+                                        <td>
+                                            Missing documentation for NDS4 backend
+                                        </td>
+                                        <td>
+                                            1004 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1437495" target="_blank">https://bugs.launchpad.net/designate/+bug/1437495</a>
+                                        </td>
+                                        <td>
+                                            sink documenation should explain usage alongside ceilometer
+                                        </td>
+                                        <td>
+                                            629 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1462428" target="_blank">https://bugs.launchpad.net/designate/+bug/1462428</a>
+                                        </td>
+                                        <td>
+                                            project _memeber_ type users cannot read their quotas
+                                        </td>
+                                        <td>
+                                            560 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1501392" target="_blank">https://bugs.launchpad.net/designate/+bug/1501392</a>
+                                        </td>
+                                        <td>
+                                            Not able to add dns name when a new port is attached to existing Instance
+                                        </td>
+                                        <td>
+                                            443 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1507965" target="_blank">https://bugs.launchpad.net/designate/+bug/1507965</a>
+                                        </td>
+                                        <td>
+                                            Docs: Email/TTL is not NULL for secondary zones.
+                                        </td>
+                                        <td>
+                                            423 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1587609" target="_blank">https://bugs.launchpad.net/designate/+bug/1587609</a>
+                                        </td>
+                                        <td>
+                                            Deprecations for config options
+                                        </td>
+                                        <td>
+                                            199 days old
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>
+                                            <a href="https://bugs.launchpad.net/designate/+bug/1603808" target="_blank">https://bugs.launchpad.net/designate/+bug/1603808</a>
+                                        </td>
+                                        <td>
+                                            Designate setup missing several steps
+                                        </td>
+                                        <td>
+                                            152 days old
                                         </td>
                                     </tr>
                                                                     </tbody>
