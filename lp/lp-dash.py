@@ -360,11 +360,11 @@ def get_stale_in_progress():
 
 
 def bug_has_open_changes(bug_id):
-    gerrit_url = "https://review.openstack.org/"
-    review_url = gerrit_url + "/changes/?q=status:open+message:"+str(bug_id)
-    response = requests.get(review_url)
-    reviews = json.loads(remove_first_line(response.text))
-    return reviews
+    # gerrit_url = "https://review.openstack.org/"
+    # review_url = gerrit_url + "/changes/?q=status:open+message:"+str(bug_id)
+    # response = requests.get(review_url)
+    # reviews = json.loads(remove_first_line(response.text))
+    return []
 
 
 def remove_first_line(invalid_json):
@@ -381,6 +381,7 @@ def create_html_dashboard():
     template = "bugs_dashboard_template.html"
     rendered_html = j2_env.get_template(template).render(
         last_update=d,
+        project=PROJECT_NAME.title(),
         stale_incomplete=sorted(get_stale_incomplete(), reverse=True),
         stale_in_progress=sorted(get_stale_in_progress(), reverse=True),
         recent_reports=sorted(get_recent_reports(), reverse=True),
