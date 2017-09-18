@@ -144,3 +144,4 @@ fabric.properties
 ## Virtual Env
 
 .venv/
+lp/*html
